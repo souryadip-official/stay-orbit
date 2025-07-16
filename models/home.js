@@ -1,5 +1,9 @@
 const { mongoose } = require("mongoose");
 const homeSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+  },
   homename: {
     type: String,
     required: true,

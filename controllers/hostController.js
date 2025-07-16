@@ -18,13 +18,16 @@ const submitHome = (req, res, next) => {
   console.log(req.file?.path);
 
   const newHome = new home({
+    email: req.session.user.email,
     homename: req.body?.homename,
     contactdetails: req.body?.contactdetails,
     location: req.body?.location,
     price: req.body?.price,
     ac_service: req.body?.ac_service,
     description: req.body?.description,
-    image: req.file?.path || "https://cdn.pixabay.com/photo/2020/05/25/13/41/chalet-5218666_1280.png",
+    image:
+      req.file?.path ||
+      "https://cdn.pixabay.com/photo/2020/05/25/13/41/chalet-5218666_1280.png",
   });
   console.log(newHome);
   newHome
@@ -55,6 +58,9 @@ const editHostHome = (req, res, next) => {
     .findById(req.params.home_id)
     .then((matchedHome) => {
       if (matchedHome) {
+        if (matchedHome.email !== req.session.user.email) {
+          return res.redirect("/host/home-lists");
+        }
         res
           .status(200)
           .render(path.join(__dirname, "../views/host/edit-home.ejs"), {
@@ -93,6 +99,9 @@ const updateHostHome = (req, res, next) => {
     .findById(req.params.home_id)
     .then((updatedHome) => {
       if (updatedHome) {
+        if (updatedHome.email !== req.session.user.email) {
+          return res.redirect("/host/home-lists");
+        }
         (updatedHome.homename = homename),
           (updatedHome.contactdetails = contactdetails);
         updatedHome.location = location;
@@ -155,10 +164,10 @@ const updateHostHome = (req, res, next) => {
 const deleteHostHome = async (req, res, next) => {
   const homeId = req.params.home_id;
   await home.findById(homeId).then((matchedHome) => {
-    if (matchedHome && matchedHome.image.startsWith("uploads/")) {
-      fs.unlink(matchedHome.image, (err) => {
-        if (err) console.log("Error deleting the old file!", err);
-      });
+    if (matchedHome) {
+      if (matchedHome.email !== req.session.user.email) {
+        return res.redirect("/host/home-lists");
+      }
     }
   });
   const deletedHome = await home.findByIdAndDelete(homeId).catch((err) => {
@@ -188,7 +197,7 @@ const deleteHostHome = async (req, res, next) => {
 const getHostHomes = (req, res, next) => {
   res.status(200);
   home
-    .find()
+    .find({ email: req.session.user.email })
     .then((listedHomes) => {
       res.render(path.join(__dirname, "../views/host/host-home-list.ejs"), {
         listedHomes: listedHomes,
