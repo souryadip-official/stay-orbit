@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | StayOrbit</title>
+    <link rel="stylesheet" href="/output.css" />
+    <link rel="icon" href="/icon.png" />
+  </head>
+  <body class="bg-gradient-to-br from-amber-100 to-yellow-200">
+    <%- include('../partials/loader.ejs') %>
+
+    <div class="flex flex-col min-h-screen">
+      <%- include('../partials/navbar.ejs') %>
+
+      <div class="pt-8 pb-16 flex items-center justify-center flex-grow px-6 bg-gradient-to-br from-amber-100 to-yellow-200">
+        <form
+          action="/auth/register"
+          method="POST"
+          class="w-full max-w-xl p-8 space-y-6 bg-gradient-to-br from-white/60 to-white/40 shadow-xl rounded-xl"
+        >
+          <h3 class="text-2xl font-bold text-center text-yellow-900">
+            🔏 Register on StayOrbit
+          </h3>
+
+          <!-- Errors -->
+         <% if (typeof errors !== 'undefined' && errors && errors.length > 0) { %>
+            <div class="bg-red-100 border border-red-300 text-red-800 p-4 rounded-md">
+            <h4 class="font-semibold mb-2 text-base sm:text-lg">Please fix the following errors:</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm sm:text-base font-medium">
+            <% errors.forEach(err => { %>
+                <li><%= err %></li>
+            <% }) %>
+            </ul>
+        </div>
+        <% } %>
+
+
+          <!-- First & Last Name -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              required
+              value="<%= (oldInput && oldInput?.firstName) || '' %>"
+              class="w-full px-4 py-2 bg-white text-yellow-900 placeholder-yellow-600 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value="<%= (oldInput && oldInput?.lastName) || '' %>"
+              class="w-full px-4 py-2 bg-white text-yellow-900 placeholder-yellow-600 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
+
+          <!-- Email -->
+          <input
+            type="email"
+            name="email"
+            placeholder="Email (test@gmail.com)"
+            required
+            value="<%= (oldInput && oldInput?.email) || '' %>"
+            class="w-full px-4 py-2 bg-white text-yellow-900 placeholder-yellow-600 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          />
+
+          <!-- Password -->
+          <div class="relative">
+            <input
+              type="password"
+              name="password"
+              id="passwordInput"
+              placeholder="Password"
+              required
+              class="w-full px-4 py-2 bg-white text-yellow-900 placeholder-yellow-600 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-16"
+            />
+            <button
+              type="button"
+              onclick="togglePasswordVisibility('passwordInput', 'toggleText1', 'toggleIcon1')"
+              class="absolute inset-y-0 right-2 flex items-center px-2 text-sm text-yellow-700 font-medium focus:outline-none"
+            >
+              <span
+                class="hidden sm:inline bg-yellow-300 rounded-md pt-1 pb-1 px-2 hover:cursor-pointer"
+                id="toggleText1"
+                >View</span
+              >
+              <span
+                class="inline sm:hidden bg-yellow-300 rounded-md pt-1 pb-1 px-2 hover:cursor-pointer"
+                id="toggleIcon1"
+                >🫣</span
+              >
+            </button>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="relative">
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPasswordInput"
+              placeholder="Confirm Password"
+              required
+              class="w-full px-4 py-2 bg-white text-yellow-900 placeholder-yellow-600 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-16"
+            />
+            <button
+              type="button"
+              onclick="togglePasswordVisibility('confirmPasswordInput', 'toggleText2', 'toggleIcon2')"
+              class="absolute inset-y-0 right-2 flex items-center px-2 text-sm text-yellow-700 font-medium focus:outline-none"
+            >
+              <span
+                class="hidden sm:inline bg-yellow-300 rounded-md pt-1 pb-1 px-2 hover:cursor-pointer"
+                id="toggleText2"
+                >View</span
+              >
+              <span
+                class="inline sm:hidden bg-yellow-300 rounded-md pt-1 pb-1 px-2 hover:cursor-pointer"
+                id="toggleIcon2"
+                >🫣</span
+              >
+            </button>
+          </div>
+
+          <!-- User Type Dropdown -->
+          <select
+            name="userType"
+            required
+            class="w-full px-4 py-2 bg-white text-yellow-900 border border-yellow-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          >
+            <option value="" disabled <%= !oldInput?.userType ? 'selected' : '' %>>Select User Type</option>
+            <option value="guest" <%= oldInput?.userType === 'guest' ? 'selected' : '' %>>Guest</option>
+            <option value="host" <%= oldInput?.userType === 'host' ? 'selected' : '' %>>Host</option>
+          </select>
+
+          <!-- Terms and Conditions -->
+          <label class="flex items-start gap-2 text-sm text-yellow-800">
+            <input
+              type="checkbox"
+              name="terms"
+              required
+              class="mt-1 accent-yellow-600"
+              <%= oldInput?.terms ? 'checked' : '' %>
+            />
+            <span>
+              I agree to the
+              <a
+                href="/contact-us"
+                class="text-yellow-700 underline hover:text-yellow-900"
+                target="_blank"
+                >Terms and Conditions</a
+              >
+            </span>
+          </label>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full py-2 font-semibold text-white bg-yellow-600 rounded-md transition duration-200 hover:bg-yellow-700 hover:cursor-pointer"
+          >
+            Register
+          </button>
+
+          <!-- Already have an account? -->
+          <p class="text-center text-sm text-yellow-800">
+            Already have an account?
+            <a
+              href="/auth/login"
+              class="font-semibold text-yellow-700 hover:text-yellow-900"
+              >Login</a
+            >
+          </p>
+        </form>
+      </div>
+
+      <%- include('../partials/footer.ejs') %>
+    </div>
+
+    <script src="/js/loaderLogic.js"></script>
+    <script src="/js/show-hide-password-register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/output.css" />
+    <link rel="icon" href="/icon.png" />
+  </head>
+
+  <body class="bg-gradient-to-br from-red-100 to-orange-100">
+    <%- include('../partials/loader.ejs') %>
+
+    <div class="flex flex-col min-h-screen">
+      <%- include('../partials/navbar.ejs') %>
+
+      <!-- Contact Card Section (placed lower) -->
+      <section
+        class="flex-grow flex items-start justify-center px-4 sm:px-6 pt-[145px] pb-36"
+      >
+        <div
+          class="w-full max-w-md bg-gradient-to-r from-orange-500 via-rose-500 to-red-500 rounded-2xl shadow-2xl p-8 text-center text-white"
+        >
+          <h2 class="mb-4 text-2xl font-bold">We’d love to hear from you</h2>
+          <p class="mb-6 text-sm sm:text-base font-semibold text-white/90">
+            If you have any questions, suggestions, or just want to connect —
+            feel free to reach out. We’ll get back to you as soon as possible.
+          </p>
+
+          <div class="flex flex-col gap-4 items-center">
+            <!-- contact details Button -->
+            <a
+              href="mailto:stayorbit365@gmail.com"
+              class="inline-flex items-center gap-2 w-full justify-center px-5 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 transition rounded-md backdrop-blur-sm text-black font-semibold"
+            >
+              <img src="/gmail.webp" alt="Mail Icon" class="w-5 h-5" />
+              stayorbit365@gmail.com
+            </a>
+
+            <!-- LinkedIn Button -->
+            <a
+              href="https://www.linkedin.com/in/souryadip-mallick-03b303294"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 w-full justify-center px-5 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 transition rounded-md backdrop-blur-sm text-black font-semibold"
+            >
+              <img
+                src="/Linkedin.jpg"
+                alt="LinkedIn Icon"
+                class="w-5 h-5 rounded-sm"
+              />
+              LinkedIn Profile
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <%- include('../partials/footer.ejs') %>
+    </div>
+
+    <script src="/js/loaderLogic.js"></script>
+  </body>
+</html>

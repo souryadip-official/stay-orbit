@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Listing Form</title>
+  <link rel="stylesheet" href="/output.css" />
+  <link rel="icon" href="/icon.png" />
+</head>
+
+<body class="bg-gradient-to-br from-amber-100 to-orange-200">
+  <%- include('../partials/loader.ejs') %>
+    <div class="flex flex-col min-h-screen">
+      <%- include('../partials/navbar.ejs') %>
+        <div class="flex items-center justify-center min-h-screen p-6 bg-gradient-to-br from-amber-100 to-orange-200">
+          <form action="/host/submit-home" method="post" enctype="multipart/form-data"
+            class="w-full max-w-md p-8 space-y-6 bg-gradient-to-br from-red-50 to-orange-100 shadow-xl rounded-xl">
+            <h3 class="text-2xl font-bold text-center text-orange-800">
+              List Your Home
+            </h3>
+
+            <input type="text" name="homename" placeholder="House Name" required
+              class="w-full px-4 py-2 bg-orange-100 text-orange-900 placeholder-orange-600 border border-orange-200 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
+
+            <input type="text" name="contactdetails" placeholder="Contact Details" required
+              class="w-full px-4 py-2 bg-orange-100 text-orange-900 placeholder-orange-600 border border-orange-200 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
+
+            <input type="text" name="location" placeholder="Location" required
+              class="w-full px-4 py-2 bg-orange-100 text-orange-900 placeholder-orange-600 border border-orange-200 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
+
+            <input type="number" name="price" placeholder="Cost per night" required
+              class="w-full px-4 py-2 bg-orange-100 text-orange-900 placeholder-orange-600 border border-orange-200 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
+
+            <div>
+              <label class="block mb-2 text-gray-700">AC Service available?</label>
+              <div class="flex items-center space-x-4">
+                <label class="flex items-center">
+                  <input type="radio" name="ac_service" value="Yes" required
+                    class="mr-2 text-orange-600 focus:ring-orange-500" />
+                  <span class="text-orange-800">Yes</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="ac_service" value="No" required
+                    class="mr-2 text-orange-600 focus:ring-orange-500" />
+                  <span class="text-orange-800">No</span>
+                </label>
+              </div>
+            </div>
+            <!-- Description Section -->
+            <div>
+              <label for="description" class="block mb-2 font-medium text-gray-700">
+                Description
+              </label>
+              <textarea id="description" name="description" rows="4"
+                placeholder="Describe your stay (location highlights, amenities, etc.)"
+                class="w-full px-4 py-2 bg-orange-100 text-orange-900 placeholder-orange-600 border border-orange-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+            </div>
+
+            <!-- Image Upload Section -->
+            <div>
+              <label for="image" class="block text-sm font-semibold text-orange-900 mb-2">
+                Upload a Home Image
+              </label>
+              <input type="file" id="image" name="image" accept="image/jpg, image/jpeg, image/png"
+                class="w-full mb-4 text-orange-900 bg-orange-100 border border-orange-200 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-orange-300 file:bg-orange-200 file:text-orange-900 hover:file:bg-orange-300 file:font-semibold file:text-sm" />
+            </div>
+
+
+            <button type="submit"
+              class="w-full py-2 font-semibold text-white transition duration-200 bg-orange-700 rounded-md hover:bg-orange-800 hover:cursor-pointer">
+              Submit Application
+            </button>
+          </form>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+    </div>
+    <script src="/js/loaderLogic.js"></script>
+</body>
+
+</html>

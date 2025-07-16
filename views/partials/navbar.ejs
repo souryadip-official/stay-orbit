@@ -1,0 +1,130 @@
+<nav
+  class="sticky top-0 z-50 p-4 rounded-b-lg shadow-md backdrop-blur-lg bg-white/10"
+>
+  <div class="flex justify-between items-center w-full">
+    <!-- Logo & Title -->
+    <div class="flex items-center space-x-2">
+      <img src="/icon.png" alt="StayOrbit Logo" class="w-8 h-8 rounded-full" />
+      <strong class="text-sm md:text-base font-semibold">
+        Welcome to <span class="text-red-600">StayOrbit</span>
+      </strong>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex items-center gap-3">
+      <a
+        href="/"
+        id="HOME"
+        class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >🏠 Home</a
+      >
+      <% if(isLoggedIn) { %>
+        <% if(user && user.userType === 'guest') { %>
+        <a
+          href="/favorites"
+          class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+          >❤️ Favorites</a
+        >
+        <a
+          href="/all-homelist"
+          class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+          >💎 All Homes</a
+        >
+      <% } else { %>
+        <a
+          href="/host/home-lists"
+          class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+          >🪴 Your Homes</a
+        >
+        <a
+          href="/host/add-home"
+          class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+          >➕ Add Home</a
+        >
+      <% } %>
+      <a
+        href="/auth/logout"
+        class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >🔒 Logout</a
+      >
+      <% } else { %>
+      <a
+        href="/auth/login"
+        class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >🔓 Login</a
+      >
+      <a
+        href="/auth/register"
+        class="px-3 py-1.5 text-sm rounded-md bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >🔏 Register</a
+      >
+      <% } %>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <div class="lg:hidden">
+      <button
+        onclick="toggleMobileMenu()"
+        class="px-4 py-1.5 text-sm font-semibold bg-orange-500 text-white rounded-md shadow-md hover:brightness-110 transition cursor-pointer"
+      >
+        ☰ Menu
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="lg:hidden mt-4 hidden grid grid-cols-2 gap-3 transition-all duration-300 ease-in-out transform opacity-0 scale-95"
+  >
+    <a
+      href="/"
+      class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-red-400 to-pink-500 text-white font-semibold shadow hover:brightness-110 transition"
+      >🏠 Home</a
+    >
+    <% if(isLoggedIn) { %>
+      <% if(user && user.userType === 'guest') { %>
+      <a
+        href="/favorites"
+        class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-pink-500 to-rose-400 text-white font-semibold shadow hover:brightness-110 transition"
+        >❤️ Favorites</a
+      >
+      <a
+        href="/all-homelist"
+        class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-fuchsia-500 to-pink-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >💎 All Homes</a
+      >
+    <% } else { %>
+      <a
+        href="/host/home-lists"
+        class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >🪴 Your Homes</a
+      >
+      <a
+        href="/host/add-home"
+        class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold shadow hover:brightness-110 transition"
+        >➕ Add Home</a
+      >
+    <% } %>
+    <a
+      href="/auth/logout"
+      class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold shadow hover:brightness-110 transition"
+      >🔒 Logout</a
+    >
+    <% } else { %>
+    <a
+      href="/auth/login"
+      class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-cyan-600 to-sky-700 text-white font-semibold shadow hover:brightness-110 transition"
+      >🔓 Login</a
+    >
+    <a
+      href="/auth/register"
+      class="block px-3 py-2 text-sm rounded-md bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold shadow hover:brightness-110 transition"
+      >🔏 Register</a
+    >
+    <% } %>
+  </div>
+
+  <!-- Toggle Script -->
+  <script src="/js/mobileMenu.js"></script>
+</nav>

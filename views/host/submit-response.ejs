@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Submission Success</title>
+  <link rel="stylesheet" href="/output.css" />
+  <link rel="icon" href="/icon.png" />
+</head>
+
+<body class="bg-gradient-to-br from-yellow-100 via-orange-100 to-amber-200 text-gray-800 font-sans">
+  <%- include('../partials/loader.ejs') %>
+
+    <div class="flex flex-col min-h-screen">
+      <%- include('../partials/navbar.ejs') %>
+
+        <main class="flex-grow flex items-center justify-center px-4 sm:px-6 py-10">
+          <div class="w-full max-w-2xl space-y-10">
+            <!-- Heading -->
+            <h3 class="text-2xl sm:text-3xl font-semibold text-center text-orange-900">
+              Application submitted for
+              <span class="font-bold text-red-600">
+                <%= home.homename %>
+              </span>
+              <br />
+            </h3>
+
+            <!-- Distinct Gradient Application Summary Card -->
+            <section
+              class="w-full mt-6 p-6 sm:p-8 space-y-6 rounded-2xl  bg-white/30 backdrop-blur-md transition-all duration-300 ease-in-out">
+              <h2 class="pb-2 text-xl sm:text-2xl font-bold text-purple-900 border-b border-purple-300">
+                🈸 Application Summary
+              </h2>
+
+              <div class="space-y-3 text-base sm:text-lg text-gray-800">
+                <p>
+                  <span class="font-semibold text-gray-900">☎️ Contact Details:</span>
+                  <%= home.contactdetails %>
+                </p>
+                <p>
+                  <span class="font-semibold text-gray-900">🗺️ Location:</span>
+                  <%= home.location %>
+                </p>
+                <p>
+                  <span class="font-semibold text-gray-900">💵 Cost per night:</span>
+                  ₹<%= home.price %>
+                </p>
+                <p>
+                  <span class="font-semibold text-gray-900">❄️ AC Service:</span>
+                  <%= home.ac_service %>
+                </p>
+              </div>
+
+              <!-- Description (no card effect) -->
+              <div class="pt-4">
+                <h3 class="text-lg sm:text-xl font-semibold text-purple-900 mb-2">
+                  📝 Description
+                </h3>
+                <p class="text-sm sm:text-base text-gray-900 leading-relaxed">
+                  <%= home.description && home.description.trim() !=='' ? home.description
+                    : 'No description provided for this stay.' %>
+                </p>
+              </div>
+
+              <!-- Image -->
+              <div class="w-full aspect-video overflow-hidden shadow-md rounded-xl">
+                <img src="<%= home.image %>"
+                  alt="Image Preview" class="object-cover w-full h-full" />
+              </div>
+            </section>
+          </div>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+    </div>
+
+    <script src="/js/loaderLogic.js"></script>
+</body>
+
+</html>

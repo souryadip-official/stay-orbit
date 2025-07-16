@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <link rel="stylesheet" href="/output.css" />
+    <link rel="icon" href="/icon.png" />
+  </head>
+
+  <body class="bg-gradient-to-br from-red-100 to-orange-100">
+    <%- include('../partials/loader.ejs') %>
+
+    <div class="flex flex-col min-h-screen">
+      <%- include('../partials/navbar.ejs') %>
+
+      <!-- Main content -->
+      <main
+        class="flex-grow flex flex-col items-center justify-center px-4 py-12 sm:px-8 md:px-16 text-center"
+      >
+        <h1
+          class="text-6xl sm:text-7xl font-extrabold text-white drop-shadow mb-4"
+        >
+          <span class="inline-block bg-red-600 px-4 py-2 rounded-md"
+            >Error</span
+          >
+        </h1>
+
+        <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
+          Something Went Wrong
+        </h2>
+
+        <h4 class="text-md sm:text-lg text-gray-700 mb-4 font-semibold">
+          <span class="text-pink-600 break-all"><%= message %></span>
+        </h4>
+
+        <p
+          class="max-w-xl text-sm sm:text-base text-gray-600 font-semibold mb-6"
+        >
+          <span
+            class="inline-block bg-gray-800 text-white px-4 py-2 rounded-md"
+          >
+            ⚠️ Please check your request and try again later.
+          </span>
+        </p>
+      </main>
+
+      <%- include('../partials/footer.ejs') %>
+    </div>
+
+    <script src="/js/loaderLogic.js"></script>
+  </body>
+</html>
