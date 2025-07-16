@@ -13,7 +13,7 @@ A full-stack home listing and hosting platform built with Node.js, Express.js, M
 
 - 🏠 **Home Management**
   - Hosts can add, edit, and delete homes with descriptions and images
-  - Images uploaded locally or to Cloudinary
+  - Images uploaded to Cloudinary
   - Edit/Delete only visible to the owner of the listing
 
 - ❤️ **Favorites System**
@@ -27,7 +27,7 @@ A full-stack home listing and hosting platform built with Node.js, Express.js, M
 - 🎨 **UI/UX**
   - Built with **EJS** templating engine and **Tailwind CSS**
   - Custom gradients, responsive layouts, interactive modals
-  - Animated loaders for better user experience
+  - Loading effect enabled with the helo of loader 
 
 - 🔐 **Validation**
   - Hosts can't access user routes and vice versa
@@ -42,16 +42,9 @@ A full-stack home listing and hosting platform built with Node.js, Express.js, M
 | Backend          | Node.js, Express.js                              |
 | Frontend         | EJS, Tailwind CSS                                |
 | Database         | MongoDB                                          |
-| Authentication   | express-session                                  |
+| Authentication   | express-session, bcryptjs                                  |
 | Image Handling   | Multer, Cloudinary                               |
 | Deployment       | Render                                           |
 
 ---
 
-## 📦 Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/souryadip-official/stay-orbit.git
-cd stay-orbit
